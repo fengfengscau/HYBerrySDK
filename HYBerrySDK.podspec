@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'HYBerrySDK'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of HYBerrySDK.'
+  s.version          = '1.3.0'
+  s.summary          = 'HYBerrySDK'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,19 +18,25 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+Pod for setup HYBerrySDK.
                        DESC
 
   s.homepage         = 'https://github.com/fengfengscau/HYBerrySDK'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'fengfengscau' => 'huangminfeng@huya.com' }
+  s.author           = { 'fengfengscau' => 'fengfengscau@163.com' }
   s.source           = { :git => 'https://github.com/fengfengscau/HYBerrySDK.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'HYBerrySDK/Classes/**/*'
+  s.source_files = 'HYBerrySDK/HYBerrySDK.framework/Headers/*.{h}'
+
+  s.vendored_frameworks = 'HYBerrySDK/HYBerrySDK.framework'
+  
+  s.public_header_files = 'HYBerrySDK/HYBerrySDK.framework/Headers/HYBerrySDK.h'
+
+  s.resource = 'HYBerrySDK/HYBerrySDK.framework/berryBundle.bundle','HYBerrySDK/HYBerrySDK.framework/SVProgressHUD.bundle'
   
   # s.resource_bundles = {
   #   'HYBerrySDK' => ['HYBerrySDK/Assets/*.png']

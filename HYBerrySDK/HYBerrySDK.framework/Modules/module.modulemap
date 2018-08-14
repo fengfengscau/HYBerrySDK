@@ -1,0 +1,6 @@
+framework module HYBerrySDK {
+  umbrella header "HYBerrySDK.h"
+
+  export *
+  module * { export * }
+}

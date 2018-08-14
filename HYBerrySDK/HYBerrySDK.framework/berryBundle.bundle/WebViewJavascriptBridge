@@ -1,0 +1,69 @@
+//
+//  WebViewJavascriptBridge.js
+//  live
+//
+//  Created by Arokenda on 16/3/21.
+//  Copyright © 2016年 YY Inc. All rights reserved.
+//
+
+
+YYApiCore = {
+invokeClientMethod:function(module,name,parameters,callback) {
+    
+    console.log("invokeClientMethod-Begin");
+    console.log("module:" + module);
+    console.log("name:" + name);
+    console.log("parameters:" + parameters);
+    console.log("callback:" + callback);
+    console.log("invokeClientMethod-end");
+    
+    if (window.KiwiJSBridge) {
+        if(name == 'getCurrentUserInfo' || name == 'ready'){
+            moduleName = module;
+        }else{
+            moduleName = "invokeClientMethod";
+        }
+        
+        KiwiJSBridge.call(moduleName, {'module':moduleName,'name':name,'type':parameters.type, 'param':parameters} , function(resp){
+                          
+                          console.log(name);
+                          console.log(JSON.stringify(resp));
+                          
+                          
+                          if(typeof unifiedResultToWeb != 'undefined')
+                          {
+                          if(name == "hasAlipay"){
+                          console.log("hasAlipay value:" + resp["hasAlipay"]);
+                          unifiedResultToWeb("hasAlipay",resp["hasAlipay"]);
+                          }else if(name == "mobile.selPic" || name == "getComnParam" || name == "getLoginedToken" || name == "getBindMobileParam" || name == "getH5Info" || name == "getUserInfo" || name == "copy" || name == "saveUserInfo"
+                                   || name == "getLivingStatus" || name == "logout"){
+                          unifiedResultToWeb(name,JSON.stringify(resp));
+                          console.log("excute:" + name + JSON.stringify(resp));
+                          }else{
+                          unifiedResultToWeb(parameters.type,JSON.stringify(resp));
+                          
+                          }
+                          }
+                          
+                          else if(typeof callback !='undefined')
+                          {
+                          callback(resp);
+                          }
+                          
+                          //这个垫底
+                          else if(typeof initZmCerticateCallback != 'undefined')
+                          {
+                          initZmCerticateCallback(resp);
+                          }
+                          });
+        
+    }
+    
+}
+}
+
+
+
+
+
+
