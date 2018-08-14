@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "livecommon.h"
 
 //! Project version number for HYBerrySDK.
 FOUNDATION_EXPORT double HYBerrySDKVersionNumber;
