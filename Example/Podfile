@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'HYBerrySDK_Example' do
+  pod 'HYBerrySDK', :path => '../'
+
+  target 'HYBerrySDK_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
