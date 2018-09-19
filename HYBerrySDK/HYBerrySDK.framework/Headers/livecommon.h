@@ -9,32 +9,21 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#define KNotificationAlipayAuthentication @"KNotificationAlipayAuthentication"
-
 @interface HYLiveSdkConfig : NSObject
 /**
  游戏直播配置类
-
  @param gameId 虎牙游戏平台上的游戏品类ID
  @param appId  虎牙游戏应用标示id
  @param appSecretKey 虎牙游戏应用秘钥
- @param appScheme 游戏app的scheme，用于支付宝实名认证完回调,【berry + 虎牙游戏应用标示id】
- @param appUAId 游戏厂商渠道,填写虎牙游戏应用标示id
  @return 配置
  */
 +(instancetype)configWithGameId:(uint64_t)gameId
                           appId:(NSString *)appId
-                         appKey:(NSString *)appSecretKey
-                      appScheme:(NSString *)appScheme
-                          appUa:(NSString *)appUAId;
+                         appKey:(NSString *)appSecretKey;
 
 @property(assign,nonatomic)int32_t gameId;
 
 @property(copy,nonatomic)NSString *appId;
-
-@property(copy,nonatomic)NSString *appScheme;
-
-@property(copy,nonatomic)NSString *appUAId;
 
 @property(copy,nonatomic)NSString *appSecretKey;
 
@@ -64,5 +53,15 @@
  @param needRecommend 是否首页需要推荐列表
  */
 -(void)showInView:(UIView *)superView needRecommend:(BOOL)needRecommend;
+
+
+/*
+ * 不展示登录页面直接开播
+ * superView sdk相关页面的父视图，可传入keyWindow
+ * openId    游戏账号唯一标识
+ */
+
+-(void)startLive:(UIView *)superView openId:(NSString *)openId;
+
 
 @end
